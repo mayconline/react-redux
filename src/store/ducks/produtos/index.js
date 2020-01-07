@@ -1,8 +1,11 @@
+
+//cria os types com os nomes dos reducers
 export const Types={
     ADD_LISTA: 'produtos/ADD_LISTA',
     REMOVE_LISTA: 'produtos/REMOVE_LISTA'
 }
 
+//cria um estado inicial no redux
 const INITIAL_STATE=[
     {  
         _id:'1',
@@ -22,7 +25,7 @@ const INITIAL_STATE=[
     }
 ]
 
-
+//cria os reducers
 export default function produtos(state=INITIAL_STATE, action){
     switch(action.type){
         case Types.ADD_LISTA:
@@ -36,7 +39,7 @@ export default function produtos(state=INITIAL_STATE, action){
 
 }
 
-
+//criar as actions
 export const Creators = {
     addLista:(produto)=>({
         type: Types.ADD_LISTA,

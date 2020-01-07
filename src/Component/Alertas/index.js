@@ -11,7 +11,10 @@ import {connect} from 'react-redux';
     )
 }
 
+//traz os estados do redux e mapeia pra virar uma props da funcao
 const mapStateToProps = state => ({
     isShow:state.mensagem.showAlert
 })
+
+//conecta a funcao Alertas ao redux
 export default connect(mapStateToProps)(Alertas);

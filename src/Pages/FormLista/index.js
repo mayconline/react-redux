@@ -8,19 +8,45 @@ import {Creators as MensagemActions} from '../../store/ducks/mensagem';
 
 
 
- function FormLista({addLista, }){
+ function FormLista({produtosAcao, mensagemAcao , history}){
 
+    //estado das values do form
     const [form, setForm] = useState({_id:'', descricao:''}) 
 
+    //armazena o value no estado
     const handlechange = (e)=> {
         setForm({ ...form, [e.target.name]:e.target.value})
     }
 
+    //envia o form pro redux
     const handleSubmit = (e)=>{
+
         e.preventDefault();
-        addLista(form)
-  
+
+        //action pra add um produto na lista do estado do redux
+       produtosAcao.addLista(form)
+ 
+       try{
+        //action pra aparecer uma mensagem de alerta em caso de sucesso
+        mensagemAcao.showAlert()
+
         setForm({_id:'', descricao:''})
+
+        // dispara a action pra fazer a mensagem sumir apos 3 seg
+        setTimeout( ()=> mensagemAcao.hideAlert(), 3000)
+           
+        // envia o usuario pra pagina da lista de produtos após o cadastro
+        history.push('/')
+       
+       }
+       catch(e){
+     
+           return e
+       }
+       
+
+
+
 
     }
 
@@ -58,12 +84,17 @@ import {Creators as MensagemActions} from '../../store/ducks/mensagem';
     )
 }
 
+//traz os estados do redux e mapeia pra virar uma props da funcao
 const mapStateToProps = state =>({
     produtos:state.produtos
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators(ProdutosActions,dispatch);
+//traz as actions do redux e mapeia pra virar uma props da funcao
+const mapDispatchToProps = dispatch =>({
+    produtosAcao:bindActionCreators(ProdutosActions,dispatch),
+    mensagemAcao:bindActionCreators(MensagemActions,dispatch)
+}) 
 
 
-
+                //conecta a funcao Formlista ao redux
 export default connect(mapStateToProps ,mapDispatchToProps)(FormLista);

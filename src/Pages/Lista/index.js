@@ -38,12 +38,14 @@ import {Creators as ProdutosActions} from '../../store/ducks/produtos'
     )
 }
 
+//traz os estados do redux e mapeia pra virar uma props da funcao
 const mapStateToProps = state =>({
     produtos:state.produtos
 })
 
-
+//traz as actions do redux e mapeia pra virar uma props da funcao
 const mapDispatchToProps = dispatch => bindActionCreators(ProdutosActions, dispatch);
 
 
+                //conecta a funcao Lista ao redux
 export default connect(mapStateToProps, mapDispatchToProps)(Lista);
