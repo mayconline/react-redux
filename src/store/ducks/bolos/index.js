@@ -3,13 +3,17 @@ export const Types = {
     LOAD_REQUEST:'bolos/LOAD_REQUEST',
     LOAD_SUCCESS:'bolos/LOAD_SUCCESS',
     LOAD_FAILURE:'bolos/LOAD_FAILURE',
+    ADD_SUCCESS:'bolos/ADD_SUCCESS'
+
+
 }
 
 //cria um estado inicial no redux
 const INITIAL_STATE = {
     data:[],
     loading:false,
-    error:false
+    error:false,
+    asyncObj:{}
 }
 
 //cria os reducers
@@ -20,7 +24,11 @@ export default function bolos(state=INITIAL_STATE, action){
         case Types.LOAD_SUCCESS:
             return {...state, loading:false, error:false, data:action.payload.data};
         case Types.LOAD_FAILURE:
-            return {...state, loading:false, error:true, data:[]};        
+            return {...state, loading:false, error:true, data:[]}; 
+        case Types.ADD_SUCCESS:
+            return {...state, loading:false, error:false, asyncObj:action.asyncObj}
+        
+        
         default:
             return state;
     }
@@ -42,6 +50,12 @@ export const Creators = {
     }),
     loadFailure:()=>({
         type:Types.LOAD_FAILURE
+    }),
+    addSuccess:(asyncObj)=>({
+        type:Types.ADD_SUCCESS,
+        
+            asyncObj
+        
     })
 
    

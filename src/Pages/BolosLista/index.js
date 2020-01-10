@@ -20,8 +20,8 @@ function BolosLista({bolos, loading, error ,bolosAcao}){
             {bolos && 
                 bolos.map(bolo=>(
                     <div key={bolo._id}>
-                        <li>{bolo.descricao}</li>
-                        <img src={bolo.url} alt={bolo.descricao} />  
+                        <p>Titulo: {bolo.title}</p>
+                        <p>Descrição: {bolo.description}</p>          
                     </div>
                 ))
             }
