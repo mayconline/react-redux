@@ -5,9 +5,10 @@ import {bindActionCreators} from 'redux';
 
 
 import {Creators as BolosActions} from '../../store/ducks/bolos';
+import {Creators as MensagemActions} from '../../store/ducks/mensagem';
 
 
- function FormBolos({ history, bolosAcao}){
+ function FormBolos({ history, bolosAcao, mensagemAcao}){
 
     //estado das values do form
     const [form, setForm] = useState({title:'', description:''}) 
@@ -26,10 +27,13 @@ import {Creators as BolosActions} from '../../store/ducks/bolos';
        bolosAcao.addSuccess(form)
  
        try{
+        //action pra aparecer uma mensagem de alerta em caso de sucesso
+        mensagemAcao.showAlert()
 
         setForm({title:'', description:''})
 
-        
+        // dispara a action pra fazer a mensagem sumir apos 3 seg
+        setTimeout( ()=> mensagemAcao.hideAlert(), 3000)
            
         // envia o usuario pra pagina da lista de produtos após o cadastro
         history.push('/')
@@ -87,7 +91,8 @@ const mapStateToProps = state =>({
 
 //traz as actions do redux e mapeia pra virar uma props da funcao
 const mapDispatchToProps = dispatch =>({
-    bolosAcao:bindActionCreators(BolosActions,dispatch)
+    bolosAcao:bindActionCreators(BolosActions,dispatch),
+    mensagemAcao:bindActionCreators(MensagemActions,dispatch)
  
 }) 
 

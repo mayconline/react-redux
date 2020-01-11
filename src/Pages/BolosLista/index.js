@@ -1,4 +1,5 @@
 import React ,{useEffect} from 'react';
+import { Link} from 'react-router-dom';
 import {connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import { Creators as BolosActions} from '../../store/ducks/bolos'
@@ -16,6 +17,8 @@ function BolosLista({bolos, loading, error ,bolosAcao}){
          
             {loading && <h4>Carregando por favor aguarde...</h4>}
             {error && <h4>Houve um erro no carregamento</h4> }
+
+            <Link to={'/formbolos'}><button >Cadastrar</button></Link>
 
             {bolos && 
                 bolos.map(bolo=>(
