@@ -4,7 +4,6 @@ import api from '../../../services/api';
 import {Creators as BolosActions} from './index';
 
 
-
 export function* load(){
 
     try {
@@ -22,19 +21,21 @@ export function* load(){
 }
 
 
-export function* insert(BolosActions){
+export function* insert(action){
 
-    const {asyncObj} = BolosActions.addSuccess
-    console.log(asyncObj)
-   
+    //recebe uma action com o objeto do formulario
+  const {product} = action
     try{
-        const response = yield call(api.post,'/products/store', asyncObj)
-        if(response === true) {
-            yield put(BolosActions.loadRequest())
-        }
+       const response = yield call(api.post,'/products/store', product)
+        
+       //caso de ok na requisição, chama o loadRequest para atualizar a lista com novo produto
+        if(response.status===200) {
+        yield put(BolosActions.loadRequest())
+      } 
 
     }
     catch(err){
+     
         yield put(BolosActions.loadFailure())
     }
 }

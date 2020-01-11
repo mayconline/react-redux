@@ -13,7 +13,7 @@ const INITIAL_STATE = {
     data:[],
     loading:false,
     error:false,
-    asyncObj:{}
+    product:{}
 }
 
 //cria os reducers
@@ -26,7 +26,7 @@ export default function bolos(state=INITIAL_STATE, action){
         case Types.LOAD_FAILURE:
             return {...state, loading:false, error:true, data:[]}; 
         case Types.ADD_SUCCESS:
-            return {...state, loading:false, error:false, asyncObj:action.asyncObj}
+            return {...state, loading:false, error:false, product:action.product}
         
         
         default:
@@ -51,10 +51,9 @@ export const Creators = {
     loadFailure:()=>({
         type:Types.LOAD_FAILURE
     }),
-    addSuccess:(asyncObj)=>({
+    addSuccess:(product)=>({
         type:Types.ADD_SUCCESS,
-        
-            asyncObj
+           product
         
     })
 
