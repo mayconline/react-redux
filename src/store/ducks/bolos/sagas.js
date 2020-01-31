@@ -1,5 +1,6 @@
 import {call, put } from 'redux-saga/effects';
 import api from '../../../services/api';
+import {toast} from 'react-toastify';
 
 import {Creators as BolosActions} from './index';
 
@@ -10,12 +11,12 @@ export function* load(){
         
         const response = yield call(api.get, '/products')
       
-        
-        yield put(BolosActions.loadSuccess(response.data))
+            toast.success('Lista Carregada com Sucesso')
+             yield put(BolosActions.loadSuccess(response.data))
     }
     catch(err){
-       
-        yield put(BolosActions.loadFailure())
+            toast.error('Houve um Erro ao Carregar a Lista')
+             yield put(BolosActions.loadFailure())
         
     }
 }
@@ -30,12 +31,15 @@ export function* insert(action){
         
        //caso de ok na requisição, chama o loadRequest para atualizar a lista com novo produto
         if(response.status===200) {
-        yield put(BolosActions.loadRequest())
+            toast.success('Produto Cadastrado com Sucesso')
+                yield put(BolosActions.loadRequest())
       } 
+
+     
 
     }
     catch(err){
-     
-        yield put(BolosActions.loadFailure())
+         toast.error('Houve um Erro ao Cadastrar o Produto')
+            yield put(BolosActions.loadFailure())
     }
 }
