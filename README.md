@@ -1,15 +1,10 @@
 #### Eslint
 
-`
-
 1. npm install eslint --save-dev
 2. npx eslint --init
 3. find in package.json other dependency
 
-`
-
-`
-module.exports = {
+```module.exports = {
 env: {
 browser: true,
 es6: true,
@@ -38,27 +33,30 @@ rules: {
 'jsx-a11y/label-has-associated-control': 'off',
 },
 };
-
-`
+```
 
 #### Prettier
-
-`
 
 1.  npm install --save-dev --save-exact prettier
 2.  make file .prettierrc
 
-`{ "singleQuote": true, "trailingComma": "es5" }`
+````{
+"singleQuote": true,
+"trailingComma": "es5"
+}```
 
-`
+
 
 #### Open Settings JSON
 
-`
 
 1. CTRL + SHIFT + P
 
 2. insert in file
-   `"javascript.updateImportsOnFileMove.enabled": "always", "editor.formatOnSave": true, "prettier.singleQuote": true, "editor.codeActionsOnSave": { "source.fixAll.eslint": true, "source.organizeImports": true },`
 
-`
+   ```"javascript.updateImportsOnFileMove.enabled": "always", "editor.formatOnSave": true,
+   "prettier.singleQuote": true,
+   "editor.codeActionsOnSave": {
+       "source.fixAll.eslint": true, "source.organizeImports": true
+       },```
+````
