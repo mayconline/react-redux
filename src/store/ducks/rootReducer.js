@@ -1,12 +1,11 @@
-import {combineReducers} from 'redux';
-
-import produtos from './produtos';
-import mensagem from './mensagem';
+import { combineReducers } from 'redux';
 import bolos from './bolos';
+import mensagem from './mensagem';
+import produtos from './produtos';
 
-//une os reducer
+// une os reducer
 export default combineReducers({
-    produtos,
-    mensagem,
-    bolos
-})
+  produtos,
+  mensagem,
+  bolos,
+});
